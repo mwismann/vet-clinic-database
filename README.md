@@ -26,7 +26,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [your_project_name] <a name="about-project"></a>
+# 📖 [vet-clinic-database] <a name="about-project"></a>
 
 **[vet-clinic-database]** is a project where I created the initial structure for a vet clinic with the implementation of a relational database. I created a table to store animals' information, insert data into it, and query it.
 
