@@ -42,9 +42,43 @@ ROLLBACK TO SP1;
 UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
 COMMIT;
 
+/* Answers to questions from "query and update animals table": */
+-- How many animals are there?
 SELECT COUNT(name) FROM animals;
+
+-- How many animals have never tried to escape?
 SELECT COUNT(name) FROM animals WHERE escape_attempts = 0;
+-- What is the average weight of animals?
 SELECT AVG(weight_kg) FROM animals;
+
+-- Who escapes the most, neutered or not neutered animals?
 SELECT neutered, SUM(escape_attempts) FROM animals GROUP BY neutered;
+
+-- What is the minimum and maximum weight of each type of animal?
 SELECT species, MIN(weight_kg), MAX(weight_kg) FROM animals GROUP BY species;
+
+-- What is the average number of escape attempts per animal type of those born between 1990 and 2000?
 SELECT species, AVG(escape_attempts) FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31' GROUP BY species;
+
+/* Answers to questions from "query multiple tables" using JOIN: */
+--What animals belong to Melody Pond?
+SELECT animals.name FROM animals JOIN owners ON animals.owner_id = owners.id WHERE owners.full_name = 'Melody Pond';
+
+-- List of all animals that are pokemon (their type is Pokemon).
+SELECT animals.name FROM animals JOIN species ON animals.species_id = species.id WHERE species.name = 'pokemon';
+
+-- List all owners and their animals, remember to include those that don't own any animal.
+SELECT owners.full_name, animals.name FROM owners LEFT JOIN animals ON owners.id = animals.owner_id;
+
+-- How many animals are there per species?
+SELECT species.name, COUNT(animals.name) FROM species LEFT JOIN animals ON species.id = animals.species_id GROUP BY species.name;
+
+-- List all Digimon owned by Jennifer Orwell.
+SELECT animals.name, species.name, owners.full_name FROM animals JOIN owners ON owners.id = animals.owner_id JOIN species ON animals.species_id = species.id WHERE owners.full_name = 'Jennifer Orwell' AND species.name LIKE 'Digimon';
+
+-- List all animals owned by Dean Winchester that haven't tried to escape.
+SELECT animals.name, animals.escape_attempts, owners.full_name FROM animals JOIN owners ON animals.owner_id = owners.id WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
+
+-- Who owns the most animals?
+SELECT COUNT(animals.name), owners.full_name FROM animals JOIN owners ON animals.owner_id = owners.id GROUP BY owners.full_name ORDER BY count DESC; -- Show all rows
+SELECT COUNT(animals.name), owners.full_name FROM animals JOIN owners ON animals.owner_id = owners.id GROUP BY owners.full_name ORDER BY count DESC LIMIT 1; -- Show only the first row
