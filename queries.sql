@@ -9,14 +9,26 @@ SELECT * FROM animals WHERE neutered = true;
 SELECT * FROM animals WHERE name != 'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
-BEGIN TRANSACTION;
-UPDATE animals SET species = 'unspecified';
+BEGIN TRANSACTION; -- begin transaction
+UPDATE animals 
+SET species = 'unspecified'; -- make changes
+
+SELECT species FROM animals; -- check changes made
 ROLLBACK;
 
-BEGIN TRANSACTION;
-UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
-UPDATE animals SET species = 'pokemon' WHERE name NOT LIKE '%mon';
+SELECT species FROM animals; -- check changes reverted
+
+BEGIN TRANSACTION; -- begin transaction
+UPDATE animals
+SET species = 'digimon' WHERE name LIKE '%mon'; -- make changes
+SELECT species FROM animals; -- check changes made
+
+UPDATE animals
+SET species = 'pokemon' WHERE name NOT LIKE '%mon'; -- make changes
+SELECT species FROM animals; -- check changes made
+
 COMMIT;
+SELECT species FROM animals; -- check changes committed
 
 BEGIN TRANSACTION;
 DELETE FROM animals;
