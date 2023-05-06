@@ -8,7 +8,6 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -62,14 +61,6 @@
 - **[Proper addition of animals table]**
 - **[Proper insertion of animal data into table]**
 - **[Diversification of queries in table]**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- At the moment, this project doesn't count with a live version.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,8 +119,6 @@ To run the project, execute the following command:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
-> Describe 1 - 3 features you will add to the project.
 
 - [ ] **[Implementation of transactions to update records]**
 - [ ] **[Implementation of transactions to delete records]**
